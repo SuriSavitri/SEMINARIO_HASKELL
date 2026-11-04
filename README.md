@@ -103,6 +103,9 @@ Também testamos casos limite: [média exatamente 7.0, média exatamente 3.0, em
 - **Recursão sobre listas:** `boletim` e `melhorAluno`.
 - **Limites da tupla:** `fst` e `snd` só servem para pares, e os campos não têm nome como no `struct`.
 
+## Comparação com C
+O arquivo comparacao.c apresenta uma estrutura struct Aluno, com campos nomeados. Em Haskell, usamos uma tupla com os campos identificados pela posição. A comparação e as conclusões estão em SINTESE.md.
+
 ## Integrantes da equipe
 - Suri Savitri Procópio Alves
 - Letícia Carvalho Barbosa
