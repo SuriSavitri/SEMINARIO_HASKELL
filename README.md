@@ -107,8 +107,10 @@ Também testamos casos limite: [média exatamente 7.0, média exatamente 3.0, em
 O arquivo comparacao.c apresenta uma estrutura struct Aluno, com campos nomeados. Em Haskell, usamos uma tupla com os campos identificados pela posição. A comparação e as conclusões estão em SINTESE.md.
 
 ## Integrantes da equipe
-- Suri Savitri Procópio Alves
-- Letícia Carvalho Barbosa
+- Suri Savitri Procópio Alves | SuriSavitri
+- Letícia Carvalho Barbosa | leticiacarvb
+- Sofia Martins Van Drunen | smvd1601
+- 
 
 ## Disciplina
 
