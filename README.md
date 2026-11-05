@@ -110,7 +110,7 @@ O arquivo comparacao.c apresenta uma estrutura struct Aluno, com campos nomeados
 - Suri Savitri Procópio Alves | SuriSavitri
 - Letícia Carvalho Barbosa | leticiacarvb
 - Sofia Martins Van Drunen | smvd1601
-- Msteus de Lira Braga | mlb2-hub
+- Mateus de Lira Braga | mlb2-hub
 
 ## Disciplina
 
