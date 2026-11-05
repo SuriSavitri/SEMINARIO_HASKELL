@@ -28,15 +28,16 @@ boletim (aluno:restante) =
 -- 5. Aluno com maior media.
 -- Lista vazia: devolve ("", 0.0) (decisao da equipe).
 -- Empate: vence o que aparece primeiro na lista.
-melhorAluno :: [Aluno] -> (String, Double)
+melhorEntre :: (String, Double) -> (String, Double) -> (String, Double)
+melhorEntre primeiro@(_, mediaPrimeiro) segundo@(_, mediaSegundo)
+  | mediaSegundo > mediaPrimeiro = segundo
+  | otherwise = primeiro
+
+melhorAluno :: [(String, Double, Double, Double)] -> (String, Double)
 melhorAluno [] = ("", 0.0)
 melhorAluno [aluno] = (nome aluno, media aluno)
-melhorAluno (aluno:restante)
-  | media aluno >= mediaDoMelhor = (nome aluno, media aluno)
-  | otherwise                    = melhorDoResto
-  where
-    melhorDoResto = melhorAluno restante
-    mediaDoMelhor = snd melhorDoResto
+melhorAluno (aluno:restante) =
+  melhorEntre (nome aluno, media aluno) (melhorAluno restante)
 
 -- Extensao: conta quantos alunos tem a situacao informada.
 contarPorSituacao :: String -> [Aluno] -> Int
