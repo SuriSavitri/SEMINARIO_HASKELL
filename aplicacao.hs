@@ -1,5 +1,6 @@
 -- Aplicacao.hs: Tema 07 - Tuplas como registros em um boletim escolar
 -- Cada aluno e representado por (nome, nota1, nota2, nota3).
+-- Compilado com ghc -Wall: sem avisos.
 
 type Aluno = (String, Double, Double, Double)
 type Resultado = (String, Double, String)
@@ -12,28 +13,30 @@ nome (n, _, _, _) = n
 media :: Aluno -> Double
 media (_, nota1, nota2, nota3) = (nota1 + nota2 + nota3) / 3
 
--- 3. Classifica pela media. A ordem das guardas importa.
+-- 3. Classifica pela media. A ordem das guardas importa:
+-- se testassemos >= 3 primeiro, quem tem 8 viraria "final".
 situacao :: Double -> String
 situacao valor
   | valor >= 7 = "aprovado"
   | valor >= 3 = "final"
   | otherwise  = "reprovado"
 
--- 4. Percorre a lista e monta (nome, media, situacao) de cada aluno.
+-- 4. Recursiva: caso base (lista vazia) e caso (aluno:restante).
 boletim :: [Aluno] -> [Resultado]
 boletim [] = []
 boletim (aluno:restante) =
   (nome aluno, media aluno, situacao (media aluno)) : boletim restante
 
--- 5. Aluno com maior media.
--- Lista vazia: devolve ("", 0.0) (decisao da equipe).
--- Empate: vence o que aparece primeiro na lista.
+-- Auxiliar (nao recursiva): compara dois (nome, media).
+-- Empate: fica o primeiro, ou seja, o que aparece antes na lista.
 melhorEntre :: (String, Double) -> (String, Double) -> (String, Double)
 melhorEntre primeiro@(_, mediaPrimeiro) segundo@(_, mediaSegundo)
   | mediaSegundo > mediaPrimeiro = segundo
-  | otherwise = primeiro
+  | otherwise                    = primeiro
 
-melhorAluno :: [(String, Double, Double, Double)] -> (String, Double)
+-- 5. Recursiva. Lista vazia: devolve ("", 0.0) (decisao da equipe).
+-- A recursao esta aqui: descobre o melhor do resto e compara com o atual.
+melhorAluno :: [Aluno] -> (String, Double)
 melhorAluno [] = ("", 0.0)
 melhorAluno [aluno] = (nome aluno, media aluno)
 melhorAluno (aluno:restante) =
@@ -74,3 +77,4 @@ main = do
   putStrLn ("situacao 7.0 = " ++ situacao 7.0)
   putStrLn ("situacao 3.0 = " ++ situacao 3.0)
   putStrLn ("melhorAluno [] = " ++ show (melhorAluno []))
+  putStrLn ("empate = " ++ show (melhorAluno [("A", 5, 5, 5), ("B", 5, 5, 5)]))
